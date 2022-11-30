@@ -656,7 +656,7 @@ if __name__ == "__main__":
                 "Load pretrained model",
                 "Diagnose model",
                 "Render some self play games",
-                "Play against MuZero",
+                "Test or Play against MuZero",
                 "Test the game manually",
                 "Hyperparameter search",
                 "Exit",
@@ -677,9 +677,11 @@ if __name__ == "__main__":
             elif choice == 2:
                 muzero.diagnose_model(30)
             elif choice == 3:
-                muzero.test(render=True, opponent="self", muzero_player=None)
+                print(muzero.test(render=True, opponent="self", muzero_player=None))
             elif choice == 4:
-                muzero.test(render=True, opponent="human", muzero_player=0)
+                type_of_player = input("what type of player to play against? (random, expert, human): ")
+                num_tests = int(input("how many games to play? (default 10): ") or 10)
+                print(muzero.test(render=True, opponent=type_of_player, muzero_player=0, num_tests=num_tests))
             elif choice == 5:
                 env = muzero.Game()
                 env.reset()
